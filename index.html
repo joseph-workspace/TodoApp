@@ -22,10 +22,15 @@
             </nav>
     
             <div class="container-fluid d-flex align-items-top childFlex">
-                <div class="row">
+                <div class="row w-100">
                     <div class="col-3 d-flex align-content-around flex-column bg-light">
-                        <div class="input">
+                        <div class="row w-100 m-2 input">
                             <input class="w-100" id="inputText" type="text"></br>
+                        </div>
+                        <div class="row m-2 w-100">
+                            <button class="btn btn-dark" type="button" onclick="someFunction();">Add</button>
+                        </div>
+                        <div class="row m-2 w-100">
                             <ul class="list-group">
                                 <li class="list-group-item active">Lorem, ipsum dolor.</li>
                                 <li class="list-group-item">sit amet consectetur</li>
@@ -38,14 +43,27 @@
                     </div>
     
                     <div class="col-8">
-                        <!-- current todo list name goes here -->
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa saepe consequatur voluptatem illo? Ipsum,
-                        qui non modi alias ab ad! Molestiae voluptatibus, quod rerum aspernatur similique repudiandae fugiat quia quaerat?
+                        <div class="todo-list">
+                            <h1 class="text-center">To Do List</h1>
+                            <ul class="list-group list-todos">
+                                <li class="list-group-item">
+                                    <input id="firstCheckbox" type="checkbox">
+                                    <label for="firstCheckbox">Something I've got 
+                                        to do.
+                                </li>
+                                <li class="list-group-item">
+                                    <input id="secondCheckbox" type="checkbox">
+                                    <label for="secondCheckbox">Another thing I've got 
+                                        to do.
+                                    </label>
+                                </li>
+                            </ul>
+                        <!-- <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium, illum ratione eius sed libero beatae aliquid earum laborum? Consequatur, ipsa odio porro nam, nisi consequuntur magni saepe doloribus accusantium qui reiciendis, rerum voluptates suscipit. Facilis distinctio voluptates perspiciatis magni facere!</p> -->
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        
     </div>
 </body>
 </html>
