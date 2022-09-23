@@ -30,21 +30,12 @@
                         <div class="row m-2 w-100">
                             <button class="btn btn-dark" type="button" onclick="someFunction();">Add</button>
                         </div>
-                        <div class="row m-2 w-100">
-                            <ul class="list-group">
-                                <li class="list-group-item active">Lorem, ipsum dolor.</li>
-                                <li class="list-group-item">sit amet consectetur</li>
-                                <li class="list-group-item">adipisicing elit. Quam!</li>
-                                <li class="list-group-item">perspiciatis natus cum!</li>
-                                <li class="list-group-item">accusamus eaque voluptate.</li>
-                            </ul>
-                        </div>
-                        <!-- list of todo lists go here -->
+                        <div id="lists" class="row m-2 w-100"></div>
                     </div>
     
                     <div class="col-8">
                         <div class="todo-list">
-                            <h1 class="text-center">To Do List</h1>
+                            <h1 id="current-list-name">To Do List</h1>
                             <ul class="list-group list-todos">
                                 <li class="list-group-item">
                                     <input id="firstCheckbox" type="checkbox">
