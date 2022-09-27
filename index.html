@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./css/style.css">
     <script src="https://kit.fontawesome.com/8b9253969f.js" crossorigin="anonymous"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script defer src="./js/todo.js"></script>
     <title>To Do's</title>
 </head>
 <body>
@@ -21,36 +22,32 @@
                 </div>
             </nav>
     
-            <div class="container-fluid d-flex align-items-top childFlex">
-                <div class="row w-100">
+            <div class="container-fluid d-flex align-items-top childFlex p-0">
+                <div class="row w-100 m-0">
                     <div class="col-3 d-flex align-content-around flex-column bg-light">
-                        <div class="row w-100 m-2 input">
-                            <input class="w-100" id="inputText" type="text"></br>
+                        <!-- <div class="row">
+                            <h2>Enter a todo list</h2>
+                        </div> -->
+                        <div class="row w-100 m-2 input pt-5">
+                            <input class="w-100" id="input-list-name" type="text" placeholder="Enter List Name..."></br>
                         </div>
                         <div class="row m-2 w-100">
-                            <button class="btn btn-dark" type="button" onclick="someFunction();">Add</button>
+                            <button class="btn btn-dark" type="button" onclick="addList();">Add</button>
                         </div>
                         <div id="lists" class="row m-2 w-100"></div>
                     </div>
     
-                    <div class="col-8">
-                        <div class="todo-list">
-                            <h1 id="current-list-name">To Do List</h1>
-                            <ul class="list-group list-todos">
-                                <li class="list-group-item">
-                                    <input id="firstCheckbox" type="checkbox">
-                                    <label for="firstCheckbox">Something I've got 
-                                        to do.
-                                </li>
-                                <li class="list-group-item">
-                                    <input id="secondCheckbox" type="checkbox">
-                                    <label for="secondCheckbox">Another thing I've got 
-                                        to do.
-                                    </label>
-                                </li>
-                            </ul>
-                        <!-- <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium, illum ratione eius sed libero beatae aliquid earum laborum? Consequatur, ipsa odio porro nam, nisi consequuntur magni saepe doloribus accusantium qui reiciendis, rerum voluptates suscipit. Facilis distinctio voluptates perspiciatis magni facere!</p> -->
+                    <div class="col-6 right-column">
+                        <h1 id="current-list-name">To Do List</h1>
+                        <div id="todo-list"></div>
+                        <div class="remove-container">
+                            <button class="btn btn-danger remove-button" type="button" onclick="removeTodo();">Remove</button>
                         </div>
+                    </div>
+                    <div class="col-3 p-3 bg-secondary">
+                        <input class="todo-input" id="input-a-todo" type="text" placeholder="Type a to do here!">
+                        <button class="btn btn-success add-todo" type="button" onclick="addTodo();">Add</button>
+                        <div id="warning-message"></div>
                     </div>
                 </div>
             </div>

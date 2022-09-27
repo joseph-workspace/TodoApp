@@ -12,4 +12,22 @@ body, .outer, .parentFlex, .childFlex {
   color: blue;
 }
 
+.right-column h1 {
+  text-align: left;
+}
+
+.todo-input {
+  width: 70%;
+}
+
+.add-todo {
+  width: 20%;
+}
+
+.remove-button {
+  float: right;
+  display: none;
+  margin-top: 10px;
+}
+
 /*# sourceMappingURL=style.css.map */
