@@ -14,7 +14,7 @@
 <body>
     <div class="outer d-flex justify-content-between flex-column w-100">
         <div class="parentFlex d-flex flex-column">
-            <nav class="container-fluid navbar bg-dark w-100 p-0">
+            <nav class="container-fluid navbar w-100 p-0 bg-secondary">
                 <div class="row w-100">
                     <span class="col-10 listo">Listo</span>
                     <i class="col-1 fa-solid fa-gear gear"></i>
@@ -25,26 +25,25 @@
             <div class="container-fluid d-flex align-items-top childFlex p-0">
                 <div class="row w-100 m-0">
                     <div class="col-3 d-flex align-content-around flex-column bg-light">
-                        <!-- <div class="row">
-                            <h2>Enter a todo list</h2>
-                        </div> -->
                         <div class="row w-100 m-2 input pt-5">
                             <input class="w-100" id="input-list-name" type="text" placeholder="Enter List Name..."></br>
                         </div>
                         <div class="row m-2 w-100">
                             <button class="btn btn-dark" type="button" onclick="addList();">Add</button>
                         </div>
+                        <!-- list container -->
                         <div id="lists" class="row m-2 w-100"></div>
                     </div>
     
                     <div class="col-6 right-column">
                         <h1 id="current-list-name">To Do List</h1>
+                        <!-- to-do list container -->
                         <div id="todo-list"></div>
                         <div class="remove-container">
                             <button class="btn btn-danger remove-button" type="button" onclick="removeTodo();">Remove</button>
                         </div>
                     </div>
-                    <div class="col-3 p-3 bg-secondary">
+                    <div class="col-3 p-3 create-todos">
                         <input class="todo-input" id="input-a-todo" type="text" placeholder="Type a to do here!">
                         <button class="btn btn-success add-todo" type="button" onclick="addTodo();">Add</button>
                         <div id="warning-message"></div>

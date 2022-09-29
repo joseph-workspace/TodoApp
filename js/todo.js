@@ -2,8 +2,21 @@
 var lists = [];
 var currentListIndex = -1;
 var currentList;
+const redButton = document.querySelector('.remove-button');
+
+//event listeners
+
+//event listener to add clickable list selection functionality
+document.querySelector('#lists').addEventListener('click', function(event) {
+    if (event.target.tagName.toLowerCase() === 'li') {
+        const eventId = event.target.id;
+        selectList(eventId);
+        render();
+    }
+});
 
 
+//functions
 function render() {
 //this will hold the html that will be displayed in the sidebar
 const warningElement = document.getElementById('warning-message');
@@ -13,11 +26,23 @@ const warningElement = document.getElementById('warning-message');
         a to-do!</span>`;
 
     } else {
-        warningElement.textContent = ``;
+        redButton.style.display = 'block';
+        warningElement.textContent = '';
         let listsHTML = '<ul class="list-group">';
         // iterate through the lists to get their names
         lists.forEach((list) => {
-            listsHTML += `<li class="list-group-item">${list.name}</li>`;
+            if (list.selected) {
+                listsHTML += `<li id="${list.id}" class="list-group-item bg-success list-btn">
+                ${list.name}</li>`;
+                // var clickItem = document.querySelector('.list-btn');
+                // clickItem.addEventListener('click', function(event) {
+                //     event.preventDefault();
+                //     alert('It worked!!');
+                // });
+            } else {
+                listsHTML += `<li id="${list.id}" class="list-group-item">
+                ${list.name}</li>`;
+            }
         });
         listsHTML += '</ul>';
         //print out the lists
@@ -62,7 +87,7 @@ function addTodo() {
 }
     
 function removeTodo() {
-
+    //use array method filter, which only keeps true items
     currentList.todos = currentList.todos.filter((element, index) => {
         const checkedValue = document.querySelector(`[data-index="${index}"]`);
 
@@ -79,7 +104,9 @@ function addList() {
     if (listName) {
         lists.push(
             {
+                id: currentListIndex + 1,
                 name: listName,
+                selected: checkIfFirst(),
                 todos: []
         });
         //update what item currentList points to
@@ -87,8 +114,33 @@ function addList() {
         currentList = lists[currentListIndex];
         //print out data
         render();
+        console.log(lists);
     }
 }
+function checkIfFirst() {
+    if (lists.length > 0) {
+        return false;
+    } else {
+        return true;
+    }
+}
+function selectList(eventId) {
+    //call function to change currently selected item
+    const currentId = Number(eventId); 
+    //change currently selected list to point to newly clicked list
+    currentList = lists[currentId];
+    //iterate through lists to turn currently selected switch off
+    lists.forEach((list) => {
+        if (list.selected) {
+            list.selected = false;
+        }
+    });
+    //turn on selected attribute of newly selected list
+    currentList.selected = true;
+}
+
 function removeList() {
 
+    currentList.splice(currentListIndex, 1);
+    render();
 }

@@ -7,12 +7,15 @@ body, .outer, .parentFlex, .childFlex {
 }
 .gear, .circle-user, .listo {
     font-size: 28px;
-    color: blue;
+    color: darkgreen;
 }
 .right-column {
   h1 {
     text-align: left;
   }
+}
+.create-todos {
+  background-color: #30343F;
 }
 .todo-input {
   width: 70%;
