@@ -11,7 +11,7 @@ body, .outer, .parentFlex, .childFlex {
 }
 .right-column {
   h1 {
-    text-align: left;
+    text-align: center;
   }
 }
 .create-todos {
@@ -28,4 +28,12 @@ body, .outer, .parentFlex, .childFlex {
   float: right;
   display: none;
   margin-top: 10px;
+}
+.trashcan {
+  float: right;
+  visibility: hidden;
+  z-index: 1;
+}
+.list-hov:hover i{
+  visibility: visible;
 }

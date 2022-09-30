@@ -9,8 +9,15 @@ const redButton = document.querySelector('.remove-button');
 //event listener to add clickable list selection functionality
 document.querySelector('#lists').addEventListener('click', function(event) {
     if (event.target.tagName.toLowerCase() === 'li') {
-        const eventId = event.target.id;
+    const eventId = event.target.id;
         selectList(eventId);
+        render();
+    }
+});
+document.querySelector('#lists').addEventListener('click', function (event) {
+    if (event.target.tagName.toLowerCase() === 'i') {
+        const eventId = event.target.id;
+        removeList(eventId);
         render();
     }
 });
@@ -32,16 +39,16 @@ const warningElement = document.getElementById('warning-message');
         // iterate through the lists to get their names
         lists.forEach((list) => {
             if (list.selected) {
-                listsHTML += `<li id="${list.id}" class="list-group-item bg-success list-btn">
-                ${list.name}</li>`;
+                listsHTML += `<li id="${list.id}" class="list-group-item bg-success list-hov">
+                ${list.name}<i id="${list.id}" class="fa-solid fa-trash-can trashcan"></i></li>`;
                 // var clickItem = document.querySelector('.list-btn');
                 // clickItem.addEventListener('click', function(event) {
                 //     event.preventDefault();
                 //     alert('It worked!!');
                 // });
             } else {
-                listsHTML += `<li id="${list.id}" class="list-group-item">
-                ${list.name}</li>`;
+                listsHTML += `<li id="${list.id}" class="list-group-item list-hov">
+                ${list.name}<i id="${list.id}" class="fa-solid fa-trash-can trashcan"></i></li>`;
             }
         });
         listsHTML += '</ul>';
@@ -124,11 +131,12 @@ function checkIfFirst() {
         return true;
     }
 }
-function selectList(eventId) {
+function selectList(targetId) {
     //call function to change currently selected item
-    const currentId = Number(eventId); 
+    const currentId = Number(targetId); 
     //change currently selected list to point to newly clicked list
-    currentList = lists[currentId];
+    currentList = lists[targetId];
+    // currentListIndex = targetId;
     //iterate through lists to turn currently selected switch off
     lists.forEach((list) => {
         if (list.selected) {
@@ -139,8 +147,10 @@ function selectList(eventId) {
     currentList.selected = true;
 }
 
-function removeList() {
-
-    currentList.splice(currentListIndex, 1);
+function removeList(targetId) {
+    //variables
+    const currentId = Number(targetId);
+    //remove selected list
+    lists.splice(currentId, 1);
     render();
 }
