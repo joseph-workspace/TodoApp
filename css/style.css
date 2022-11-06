@@ -28,7 +28,7 @@ body, .outer, .parentFlex, .childFlex {
   width: 20%;
 }
 
-.remove-button {
+.remove-button, .complete-button {
   float: right;
   display: none;
   margin-top: 10px;

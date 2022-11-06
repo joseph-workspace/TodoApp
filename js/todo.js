@@ -4,8 +4,10 @@ var lists = [];
 var currentListIndex = -1;
 var currentList;
 const redButton = document.querySelector('.remove-button');
+const greenButton = document.querySelector('.complete-button');
 const newListButton = document.querySelector('.list-btn');
 const todoButton = document.querySelector('.add-todo');
+const todoList = document.querySelector('#todo-list');
 
 //event listeners
 newListButton.addEventListener('click', function () {
@@ -41,6 +43,13 @@ document.querySelector('#lists').addEventListener('click', function (event) {
         render();
     }
 });
+todoList.addEventListener('change', function(event) {
+        //console.log('Before function updates lists variable', currentList);
+        markTodoAsCompleted();
+        //console.log('After function updates lists', currentList);
+});
+
+
 //functions
 function render() {
 //this will hold the html that will be displayed in the sidebar
@@ -55,8 +64,8 @@ const warningElement = document.getElementById('warning-message');
         if (lists.length === 0) {
             currentListIndex = -1;
             currentList = null;
+            // lists = [];
         }
-        redButton.style.display = currentList.todos.length !== 0 ? 'block':'none';
         warningElement.textContent = '';
         let listsHTML = '<ul class="list-group">';
         // iterate through the lists to get their names
@@ -88,6 +97,8 @@ const warningElement = document.getElementById('warning-message');
 
         let todosHTML = '<ul class="list-group">';
         if (currentList !== null) {
+            redButton.style.display = currentList.todos.length !== 0 ? 'block':'none';
+            greenButton.style.display = currentList.todos.length !== 0 ? 'block':'none';
             currentList.todos.forEach((list, index) => {
             todosHTML += `<li class="list-group-item">
             <input id="${list.text}" type="checkbox" data-index=${index}>
@@ -129,7 +140,31 @@ function removeTodo() {
     });
     render();
 }
+function markTodoAsCompleted() {
+    //function that marks todos inside of list as completed after they are checked
+    //for loop loops through every todo inside selected todo list to find all
+    //checked boxes and update 'lists' global variable.
+    currentList.todos.forEach((todo, index) => {
+        const checkmarkBox = document.querySelector(`[data-index="${index}"]`);
+        if (checkmarkBox.checked === true) {
+            currentList.todos[index].completed = true;
+        } else {
+            currentList.todos[index].completed = false;
+        }
+    });
+}
+function removeAllTodosCompleted() {
+    //will be run within a button event handler
+    console.log('Before function updates currentList.todos', currentList);
 
+    for (let i = currentList.todos.length - 1; i >= 0; i--){
+        if (currentList.todos[i].completed === true) {
+            currentList.todos.splice(i, 1);
+        }
+    }
+    console.log('After function updates currentList.todos', currentList);
+    render();
+}
 function addList() {
     //get the list name from the input text box
     const listName = document.getElementById('input-list-name').value;
@@ -202,4 +237,5 @@ function selectLastList() {
 //after deletion of middle list(s) the object ids get
 //thrown off. This function removes updates them before
 //they are removed 
+
     

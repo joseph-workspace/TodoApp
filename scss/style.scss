@@ -23,7 +23,7 @@ body, .outer, .parentFlex, .childFlex {
 .add-todo {
   width: 20%;
 }
-.remove-button {
+.remove-button, .complete-button {
   // position: relative;
   float: right;
   display: none;
