@@ -1,13 +1,19 @@
 //Global variable(s) 
 //KEEP IN MIND THE LESS GLOBAL VARIABLES YOU HAVE TO KEEP TRACK OF THE BETTER!
-var lists = [];
-var currentListIndex = -1;
-var currentList;
+//localStorage.clear();
+var lists = localStorage.getItem('lists') ? JSON.parse(localStorage.getItem('lists')) : [];
+console.log('stored lists variable has been retrieved: ', lists);
+var currentListIndex = localStorage.getItem('currentListIndex') ? JSON.parse(localStorage.getItem('currentListIndex')): -1;
+var currentList = localStorage.getItem('currentList') ? JSON.parse(localStorage.getItem('currentList')) : undefined;
+console.log('stored currentList variable has been retrieved: ', currentList);
 const redButton = document.querySelector('.remove-button');
 const greenButton = document.querySelector('.complete-button');
 const newListButton = document.querySelector('.list-btn');
 const todoButton = document.querySelector('.add-todo');
 const todoList = document.querySelector('#todo-list');
+
+//render page so returning user's can see their saved to-do lists
+render();
 
 //event listeners
 newListButton.addEventListener('click', function () {
@@ -112,6 +118,7 @@ const warningElement = document.getElementById('warning-message');
         document.getElementById('todo-list').innerHTML = todosHTML;
         //reset app back to initial state if last todo list gets deleted
     }
+    save();
 }
 function addTodo() {
     const todoValue = document.getElementById('input-a-todo').value;
@@ -230,9 +237,11 @@ function selectLastList() {
             list.selected = false;
         }
     });
-    // if (lists.length === 0) {
-    //     currentListIndex = -1;
-    // }
+}
+function save() {
+    localStorage.setItem('currentList', JSON.stringify(currentList));
+    localStorage.setItem('lists', JSON.stringify(lists));
+    localStorage.setItem('currentListIndex', JSON.stringify(currentListIndex));
 }
 //after deletion of middle list(s) the object ids get
 //thrown off. This function removes updates them before
