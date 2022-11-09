@@ -13,7 +13,9 @@ const todoButton = document.querySelector('.add-todo');
 const todoList = document.querySelector('#todo-list');
 
 //render page so returning user's can see their saved to-do lists
-render();
+if (currentListIndex !== -1) {
+    render();
+}
 
 //event listeners
 newListButton.addEventListener('click', function () {
@@ -107,9 +109,10 @@ const warningElement = document.getElementById('warning-message');
             greenButton.style.display = currentList.todos.length !== 0 ? 'block':'none';
             currentList.todos.forEach((list, index) => {
             todosHTML += `<li class="list-group-item">
-            <input id="${list.text}" type="checkbox" data-index=${index}>
+            <span data-index=${index}>
+            <input id="${list.text}" type="checkbox">
             <label for="${list.text}">${list.text}</label>
-            </li>`;
+            </span></li>`;
             console.log('in for loop of render fcn currently and index is', index);
         });
     }
@@ -152,7 +155,9 @@ function markTodoAsCompleted() {
     //for loop loops through every todo inside selected todo list to find all
     //checked boxes and update 'lists' global variable.
     currentList.todos.forEach((todo, index) => {
-        const checkmarkBox = document.querySelector(`[data-index="${index}"]`);
+        const spanBox = document.querySelector(`[data-index="${index}"]`);
+        const checkmarkBox = spanBox.childNodes[1];
+        console.log('child of span element: ', checkmarkBox);
         if (checkmarkBox.checked === true) {
             currentList.todos[index].completed = true;
         } else {
@@ -166,11 +171,15 @@ function removeAllTodosCompleted() {
 
     for (let i = currentList.todos.length - 1; i >= 0; i--){
         if (currentList.todos[i].completed === true) {
+            const todoElement = document.querySelector(`[data-index="${i}"]`);
+            // setTimeout(() => {
+            todoElement.classList.add('animate__animated', 'animate__fadeOutRight');
+            // }, 600);
             currentList.todos.splice(i, 1);
+            setTimeout(() => {render()}, 1000);
         }
     }
     console.log('After function updates currentList.todos', currentList);
-    render();
 }
 function addList() {
     //get the list name from the input text box
