@@ -4,7 +4,7 @@
 var lists = localStorage.getItem('lists') ? JSON.parse(localStorage.getItem('lists')) : [];
 console.log('stored lists variable has been retrieved: ', lists);
 var currentListIndex = localStorage.getItem('currentListIndex') ? JSON.parse(localStorage.getItem('currentListIndex')): -1;
-var currentList = localStorage.getItem('currentList') ? JSON.parse(localStorage.getItem('currentList')) : undefined;
+var currentList = localStorage.getItem('currentList') ? JSON.parse(localStorage.getItem('currentList')) : null;
 console.log('stored currentList variable has been retrieved: ', currentList);
 const redButton = document.querySelector('.remove-button');
 const greenButton = document.querySelector('.complete-button');
